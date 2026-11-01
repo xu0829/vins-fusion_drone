@@ -1,0 +1,128 @@
+{
+  "configById": {
+    "3D!vins": {
+      "topics": {
+        "/vins_estimator/odometry": { "visible": true },
+        "/vins_estimator/path": { "visible": true },
+        "/vins_estimator/point_cloud": { "visible": true },
+        "/vins_estimator/camera_pose_visual": { "visible": true },
+        "/vins_estimator/key_poses": { "visible": false },
+        "/vins_estimator/margin_cloud": { "visible": false },
+        "/tf": { "visible": true },
+        "/tf_static": { "visible": true }
+      },
+      "scene": { "labelScaleFactor": 0.24 },
+      "cameraState": {
+        "perspective": true,
+        "distance": 8,
+        "phi": 55,
+        "thetaOffset": 0,
+        "targetOffset": [0, 0, 0],
+        "fovy": 45,
+        "near": 0.05,
+        "far": 5000
+      },
+      "followTf": "world",
+      "followMode": "follow-position"
+    },
+    "Plot!pos": {
+      "title": "位置 xyz（看漂移就看这张）",
+      "paths": [
+        { "value": "/vins_estimator/odometry.pose.pose.position.x", "enabled": true, "label": "x", "color": "#e5484d" },
+        { "value": "/vins_estimator/odometry.pose.pose.position.y", "enabled": true, "label": "y", "color": "#30a46c" },
+        { "value": "/vins_estimator/odometry.pose.pose.position.z", "enabled": true, "label": "z", "color": "#0091ff" }
+      ],
+      "xAxisVal": "timestamp",
+      "showLegend": true,
+      "showXAxisLabels": true,
+      "showYAxisLabels": true
+    },
+    "Plot!vel": {
+      "title": "速度 xyz",
+      "paths": [
+        { "value": "/vins_estimator/odometry.twist.twist.linear.x", "enabled": true, "label": "vx", "color": "#e5484d" },
+        { "value": "/vins_estimator/odometry.twist.twist.linear.y", "enabled": true, "label": "vy", "color": "#30a46c" },
+        { "value": "/vins_estimator/odometry.twist.twist.linear.z", "enabled": true, "label": "vz", "color": "#0091ff" }
+      ],
+      "xAxisVal": "timestamp",
+      "showLegend": true
+    },
+    "Plot!rpy": {
+      "title": "姿态 rpy（来自 /imu/rpy_deg，度）",
+      "paths": [
+        { "value": "/imu/rpy_deg.vector.x", "enabled": true, "label": "roll", "color": "#e5484d" },
+        { "value": "/imu/rpy_deg.vector.y", "enabled": true, "label": "pitch", "color": "#30a46c" },
+        { "value": "/imu/rpy_deg.vector.z", "enabled": true, "label": "yaw", "color": "#0091ff" }
+      ],
+      "xAxisVal": "timestamp",
+      "showLegend": true
+    },
+    "Plot!accel": {
+      "title": "IMU 加速度（m/s²）",
+      "paths": [
+        { "value": "/imu.linear_acceleration.x", "enabled": true, "label": "ax", "color": "#e5484d" },
+        { "value": "/imu.linear_acceleration.y", "enabled": true, "label": "ay", "color": "#30a46c" },
+        { "value": "/imu.linear_acceleration.z", "enabled": true, "label": "az", "color": "#0091ff" }
+      ],
+      "xAxisVal": "timestamp",
+      "showLegend": true
+    },
+    "Plot!gyro": {
+      "title": "IMU 角速度（rad/s）",
+      "paths": [
+        { "value": "/imu.angular_velocity.x", "enabled": true, "label": "gx", "color": "#e5484d" },
+        { "value": "/imu.angular_velocity.y", "enabled": true, "label": "gy", "color": "#30a46c" },
+        { "value": "/imu.angular_velocity.z", "enabled": true, "label": "gz", "color": "#0091ff" }
+      ],
+      "xAxisVal": "timestamp",
+      "showLegend": true
+    },
+    "Image!infra1": {
+      "title": "左目 infra1",
+      "imageMode": { "imageTopic": "/camera/infra1/image_rect_raw" }
+    },
+    "Image!infra2": {
+      "title": "右目 infra2",
+      "imageMode": { "imageTopic": "/camera/infra2/image_rect_raw" }
+    }
+  },
+  "layout": {
+    "direction": "column",
+    "splitPercentage": 58,
+    "first": {
+      "direction": "row",
+      "splitPercentage": 60,
+      "first": "3D!vins",
+      "second": {
+        "direction": "column",
+        "splitPercentage": 50,
+        "first": "Plot!pos",
+        "second": "Plot!vel"
+      }
+    },
+    "second": {
+      "direction": "row",
+      "splitPercentage": 34,
+      "first": "Plot!rpy",
+      "second": {
+        "direction": "row",
+        "splitPercentage": 34,
+        "first": "Plot!accel",
+        "second": {
+          "direction": "row",
+          "splitPercentage": 34,
+          "first": "Plot!gyro",
+          "second": {
+            "direction": "row",
+            "splitPercentage": 50,
+            "first": "Image!infra1",
+            "second": "Image!infra2"
+          }
+        }
+      }
+    }
+  },
+  "globalVariables": {},
+  "userNodes": {},
+  "playbackConfig": { "speed": 1.0 }
+}

@@ -1,0 +1,74 @@
+D430 相机自检证据 —— 生成于 2026-09-27T03:31:00+00:00
+容器: xu-HP-Laptop-15-fd0xxx   内核: 7.0.0-34-generic
+ROS: noetic
+
+===== 1. USB 层识别 =====
+tools/capture_camera_evidence.sh: line 18: lsusb: command not found
+(lsusb 未匹配到 Intel/RealSense)
+
+--- 设备节点 ---
+crw-rw---- 1 root video 81, 2 Sep 27 03:19 /dev/video2
+crw-rw---- 1 root video 81, 3 Sep 27 03:19 /dev/video3
+crw-rw---- 1 root video 81, 4 Sep 27 03:19 /dev/video4
+crw-rw---- 1 root video 81, 5 Sep 27 03:19 /dev/video5
+
+--- USB 速率（5000M = USB3.0）---
+  2-1.4: idProduct=0ad4 speed=5000M product=Intel(R) RealSense(TM) Depth Camera 430 
+    当前速率: 
+
+===== 2. 话题清单 =====
+/camera/infra1/camera_info
+/camera/infra1/image_rect_raw
+/camera/infra1/metadata
+/camera/infra2/camera_info
+/camera/infra2/image_rect_raw
+/camera/infra2/metadata
+
+===== 3. 频率实测（每个话题测 12 秒）=====
+--- /camera/infra1/image_rect_raw ---
+	min: 0.030s max: 0.037s std dev: 0.00134s window: 300
+average rate: 29.999
+	min: 0.030s max: 0.037s std dev: 0.00134s window: 330
+average rate: 29.997
+	min: 0.030s max: 0.037s std dev: 0.00133s window: 349
+
+--- /camera/infra2/image_rect_raw ---
+	min: 0.029s max: 0.039s std dev: 0.00141s window: 300
+average rate: 29.996
+	min: 0.029s max: 0.039s std dev: 0.00140s window: 330
+average rate: 29.998
+	min: 0.029s max: 0.039s std dev: 0.00138s window: 350
+
+===== 4. 相机内参（硬件标定，用于与 Kalibr 结果对照）=====
+--- /camera/infra1/camera_info ---
+height: 480
+width: 848
+distortion_model: "plumb_bob"
+D: [0.0, 0.0, 0.0, 0.0, 0.0]
+K: [422.21624755859375, 0.0, 423.2308349609375, 0.0, 422.21624755859375, 240.20713806152344, 0.0, 0.0, 1.0]
+R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+P: [422.21624755859375, 0.0, 423.2308349609375, 0.0, 0.0, 422.21624755859375, 240.20713806152344, 0.0, 0.0, 0.0, 1.0, 0.0]
+binning_x: 0
+
+--- /camera/infra2/camera_info ---
+height: 480
+width: 848
+distortion_model: "plumb_bob"
+D: [0.0, 0.0, 0.0, 0.0, 0.0]
+K: [422.21624755859375, 0.0, 423.2308349609375, 0.0, 422.21624755859375, 240.20713806152344, 0.0, 0.0, 1.0]
+R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+P: [422.21624755859375, 0.0, 423.2308349609375, -21.168874740600586, 0.0, 422.21624755859375, 240.20713806152344, 0.0, 0.0, 0.0, 1.0, 0.0]
+binning_x: 0
+
+===== 5. IR 发射器状态 =====
+  - 
+    name: "emitter_on_off"
+    value: False
+--
+  - 
+    name: "emitter_always_on"
+    value: False
+--
+  - 
+    name: "emitter_enabled"
+    value: 1

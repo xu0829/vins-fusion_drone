@@ -1,0 +1,286 @@
+{
+  "configById": {
+    "3D!traj": {
+      "fixedFrame": "world",
+      "topics": {
+        "/diag/imu_path": {
+          "visible": true
+        },
+        "/diag/vio_path": {
+          "visible": true
+        },
+        "/vins_estimator/imu_propagate": {
+          "visible": true
+        },
+        "/vins_estimator/odometry": {
+          "visible": true
+        },
+        "/vins_estimator/path": {
+          "visible": false
+        },
+        "/vins_estimator/point_cloud": {
+          "visible": true
+        },
+        "/vins_estimator/key_poses": {
+          "visible": false
+        },
+        "/vins_estimator/margin_cloud": {
+          "visible": false
+        },
+        "/tf": {
+          "visible": true
+        },
+        "/tf_static": {
+          "visible": true
+        },
+        "foxglove.Grid": {
+          "visible": true
+        }
+      },
+      "scene": {
+        "labelScaleFactor": 0.24
+      },
+      "cameraState": {
+        "perspective": true,
+        "distance": 6,
+        "phi": 50,
+        "thetaOffset": 0,
+        "targetOffset": [
+          0,
+          0,
+          0
+        ],
+        "fovy": 45,
+        "near": 1,
+        "far": 2000000
+      },
+      "followTf": "world",
+      "followMode": "follow-position"
+    },
+    "Plot!pos": {
+      "title": "位置 —— 粗看 |pos|(紫色/橙线)有没有单向上扬=发散；细看 xyz 分家=视觉失效",
+      "paths": [
+        {
+          "value": "/vins_estimator/odometry.pose.pose.position.x",
+          "enabled": true,
+          "label": "x",
+          "color": "#e5484d"
+        },
+        {
+          "value": "/vins_estimator/odometry.pose.pose.position.y",
+          "enabled": true,
+          "label": "y",
+          "color": "#30a46c"
+        },
+        {
+          "value": "/vins_estimator/odometry.pose.pose.position.z",
+          "enabled": true,
+          "label": "z",
+          "color": "#0091ff"
+        },
+        {
+          "value": "/vins_estimator/imu_propagate.pose.pose.position.x",
+          "enabled": true,
+          "label": "x (纯IMU)",
+          "color": "#ffb3b3"
+        },
+        {
+          "value": "/vins_estimator/imu_propagate.pose.pose.position.y",
+          "enabled": true,
+          "label": "y (纯IMU)",
+          "color": "#a8e6c1"
+        },
+        {
+          "value": "/vins_estimator/imu_propagate.pose.pose.position.z",
+          "enabled": true,
+          "label": "z (纯IMU)",
+          "color": "#9dd4ff"
+        },
+        {
+          "value": "/diag/pos_norm.x",
+          "enabled": true,
+          "label": "★|pos| VIO",
+          "color": "#8e4ec6"
+        },
+        {
+          "value": "/diag/pos_norm.y",
+          "enabled": true,
+          "label": "★|pos| 纯IMU",
+          "color": "#f76b15"
+        },
+        {
+          "value": "/diag/pos_norm.z",
+          "enabled": false,
+          "label": "|VIO-IMU| 距离",
+          "color": "#8b8d98"
+        }
+      ],
+      "xAxisVal": "timestamp",
+      "showLegend": true,
+      "showXAxisLabels": true,
+      "showYAxisLabels": true
+    },
+    "Plot!rpy": {
+      "title": "姿态（度）—— 实色=VINS  浅色=加计测的重力方向；静止时两者必须贴合",
+      "paths": [
+        {
+          "value": "/diag/vio_rpy.x",
+          "enabled": true,
+          "label": "VINS roll",
+          "color": "#e5484d"
+        },
+        {
+          "value": "/diag/vio_rpy.y",
+          "enabled": true,
+          "label": "VINS pitch",
+          "color": "#30a46c"
+        },
+        {
+          "value": "/diag/vio_rpy.z",
+          "enabled": true,
+          "label": "VINS yaw",
+          "color": "#0091ff"
+        },
+        {
+          "value": "/diag/grav_rp.x",
+          "enabled": true,
+          "label": "重力 roll",
+          "color": "#ffb3b3"
+        },
+        {
+          "value": "/diag/grav_rp.y",
+          "enabled": true,
+          "label": "重力 pitch",
+          "color": "#a8e6c1"
+        }
+      ],
+      "xAxisVal": "timestamp",
+      "showLegend": true,
+      "showXAxisLabels": true,
+      "showYAxisLabels": true
+    },
+    "Plot!delta": {
+      "title": "★ 姿态偏差 Δ = VINS − 重力（度）—— 静止时应≈0；停在几度上不归零 = 卡在退化解",
+      "paths": [
+        {
+          "value": "/diag/att_delta.x",
+          "enabled": true,
+          "label": "Δroll",
+          "color": "#e5484d"
+        },
+        {
+          "value": "/diag/att_delta.y",
+          "enabled": true,
+          "label": "Δpitch",
+          "color": "#30a46c"
+        }
+      ],
+      "xAxisVal": "timestamp",
+      "showLegend": true,
+      "showXAxisLabels": true,
+      "showYAxisLabels": true
+    },
+    "Plot!accel": {
+      "title": "原始 IMU 加速度 m/s² —— 静止时 az≈+9.81，ax/ay 是小倾角",
+      "paths": [
+        {
+          "value": "/imu/linear_acceleration.x",
+          "enabled": true,
+          "label": "ax",
+          "color": "#e5484d"
+        },
+        {
+          "value": "/imu/linear_acceleration.y",
+          "enabled": true,
+          "label": "ay",
+          "color": "#30a46c"
+        },
+        {
+          "value": "/imu/linear_acceleration.z",
+          "enabled": true,
+          "label": "az",
+          "color": "#0091ff"
+        },
+        {
+          "value": "/diag/grav_rp.z",
+          "enabled": true,
+          "label": "|a| (0.5s平均)",
+          "color": "#8b8d98"
+        }
+      ],
+      "xAxisVal": "timestamp",
+      "showLegend": true,
+      "showXAxisLabels": true,
+      "showYAxisLabels": true
+    },
+    "Plot!gyro": {
+      "title": "原始 IMU 陀螺 rad/s —— 静止时应在 0 附近；挪动飞机时会看到尖峰",
+      "paths": [
+        {
+          "value": "/imu/angular_velocity.x",
+          "enabled": true,
+          "label": "wx",
+          "color": "#e5484d"
+        },
+        {
+          "value": "/imu/angular_velocity.y",
+          "enabled": true,
+          "label": "wy",
+          "color": "#30a46c"
+        },
+        {
+          "value": "/imu/angular_velocity.z",
+          "enabled": true,
+          "label": "wz",
+          "color": "#0091ff"
+        }
+      ],
+      "xAxisVal": "timestamp",
+      "showLegend": true,
+      "showXAxisLabels": true,
+      "showYAxisLabels": true
+    },
+    "Image!infra1": {
+      "title": "左目 infra1 —— 黑掉就是相机又掉了",
+      "imageMode": {
+        "imageTopic": "/camera/infra1/image_rect_raw"
+      }
+    }
+  },
+  "layout": {
+    "direction": "column",
+    "splitPercentage": 62,
+    "first": {
+      "direction": "row",
+      "splitPercentage": 62,
+      "first": "3D!traj",
+      "second": {
+        "direction": "column",
+        "splitPercentage": 50,
+        "first": "Plot!pos",
+        "second": "Plot!rpy"
+      }
+    },
+    "second": {
+      "direction": "row",
+      "splitPercentage": 50,
+      "first": {
+        "direction": "column",
+        "splitPercentage": 50,
+        "first": "Plot!delta",
+        "second": "Plot!accel"
+      },
+      "second": {
+        "direction": "column",
+        "splitPercentage": 50,
+        "first": "Plot!gyro",
+        "second": "Image!infra1"
+      }
+    }
+  },
+  "globalVariables": {},
+  "userNodes": {},
+  "playbackConfig": {
+    "speed": 1
+  }
+}

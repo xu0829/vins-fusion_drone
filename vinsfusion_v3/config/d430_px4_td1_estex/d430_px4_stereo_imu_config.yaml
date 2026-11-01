@@ -1,0 +1,69 @@
+%YAML:1.0
+
+# 由 tools/kalibr2vins.py 生成，请勿手改；改请改脚本后重跑。
+# 来源: camchain-imucam-imu_cam_8.yaml + imu-imu_cam_8.yaml
+# body_T_cam* = inv(Kalibr T_cam_imu)；td = Kalibr timeshift_cam_imu
+
+#common parameters
+imu: 1
+num_of_cam: 2
+
+imu_topic: "/imu"
+image0_topic: "/camera/camera/infra1/image_rect_raw"
+image1_topic: "/camera/camera/infra2/image_rect_raw"
+output_path: "/root/calib_data/vins_output_td1_estex"
+
+cam0_calib: "cam0.yaml"
+cam1_calib: "cam1.yaml"
+image_width: 640
+image_height: 480
+
+# Extrinsic parameter between IMU and Camera.
+estimate_extrinsic: 1
+# 0 = 信任并固定标定值；1 = 以标定值为初值继续优化
+
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ -0.008315140914618678, 0.0029400623178423594, 0.9999611064762151, 0.0784190715464784, -0.9996021575412167, 0.026927908168292568, -0.008391328894965931, 0.02626850624083752, -0.0269515318769365, -0.9996330545731499, 0.002714983285265613, 0.025704812178163273, 0.0, 0.0, 0.0, 1.0 ]
+
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ -0.004879281433557787, 0.0055195356191526926, 0.9999728633014202, 0.07832629366116259, -0.9996204825845398, 0.027085409639035718, -0.005027064962487529, -0.023852207820101667, -0.027112421694558676, -0.9996178846495468, 0.005385283522887917, 0.024375808495167076, 0.0, 0.0, 0.0, 1.0 ]
+
+#Multiple thread support
+multiple_thread: 0
+
+#feature traker paprameters
+max_cnt: 150
+min_dist: 30
+freq: 10
+F_threshold: 1.0
+show_track: 0
+flow_back: 1
+
+#optimization parameters
+max_solver_time: 0.04
+max_num_iterations: 8
+keyframe_parallax: 10.0
+
+#imu parameters
+# 来源：Kalibr imu-*.yaml。注意：这四个值 Kalibr 未做修改，
+# 实际是 PX4 的典型初值（静止段不足，随机游走项为 NaN），非本机实测。
+acc_n: 0.0025
+gyr_n: 0.000169
+acc_w: 0.0002
+gyr_w: 5e-06
+g_norm: 9.805
+
+#unsynchronization parameters
+estimate_td: 1
+td: 0.0040031566914192854   # Kalibr timeshift_cam_imu (cam0)
+
+#loop closure parameters
+load_previous_pose_graph: 0
+pose_graph_save_path: "/root/calib_data/vins_output/pose_graph/"
+save_image: 0

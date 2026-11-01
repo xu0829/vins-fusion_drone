@@ -1,0 +1,15 @@
+build/
+devel/
+install/
+log/
+logs/
+run_logs/
+__pycache__/
+*.pyc
+*.log
+*.bag
+*.db3
+*.bak-*
+*.tmp
+*.swp
+vision_uplink.mode

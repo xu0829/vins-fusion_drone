@@ -1,0 +1,113 @@
+{
+  "configById": {
+    "3D!vins": {
+      "topics": {
+        "/vins_estimator/path": { "visible": true },
+        "/vins_estimator/point_cloud": { "visible": true },
+        "/vins_estimator/odometry": { "visible": true },
+        "/imu/orientation": { "visible": true },
+        "/tf": { "visible": true },
+        "/tf_static": { "visible": true }
+      },
+      "scene": { "labelScaleFactor": 0.24 },
+      "cameraState": {
+        "perspective": true,
+        "distance": 12,
+        "phi": 55,
+        "thetaOffset": 0,
+        "targetOffset": [0, 0, 0],
+        "fovy": 45,
+        "near": 0.05,
+        "far": 5000
+      },
+      "followTf": "world",
+      "followMode": "follow-position"
+    },
+    "Plot!roll": {
+      "paths": [
+        { "value": "/imu/att_gyro_deg.vector.x", "enabled": true },
+        { "value": "/imu/att_accel_deg.vector.x", "enabled": true },
+        { "value": "/imu/rpy_deg.vector.x", "enabled": true }
+      ],
+      "xAxisVal": "timestamp"
+    },
+    "Plot!pitch": {
+      "paths": [
+        { "value": "/imu/att_gyro_deg.vector.y", "enabled": true },
+        { "value": "/imu/att_accel_deg.vector.y", "enabled": true },
+        { "value": "/imu/rpy_deg.vector.y", "enabled": true }
+      ],
+      "xAxisVal": "timestamp"
+    },
+    "Plot!yaw": {
+      "paths": [
+        { "value": "/imu/att_gyro_deg.vector.z", "enabled": true },
+        { "value": "/imu/rpy_deg.vector.z", "enabled": true }
+      ],
+      "xAxisVal": "timestamp"
+    },
+    "Plot!gyro": {
+      "paths": [
+        { "value": "/imu.angular_velocity.x", "enabled": true },
+        { "value": "/imu.angular_velocity.y", "enabled": true },
+        { "value": "/imu.angular_velocity.z", "enabled": true }
+      ],
+      "xAxisVal": "timestamp"
+    },
+    "Plot!accel": {
+      "paths": [
+        { "value": "/imu.linear_acceleration.x", "enabled": true },
+        { "value": "/imu.linear_acceleration.y", "enabled": true },
+        { "value": "/imu.linear_acceleration.z", "enabled": true }
+      ],
+      "xAxisVal": "timestamp"
+    },
+    "Plot!pos": {
+      "paths": [
+        { "value": "/vins_estimator/odometry.pose.pose.position.x", "enabled": true },
+        { "value": "/vins_estimator/odometry.pose.pose.position.y", "enabled": true },
+        { "value": "/vins_estimator/odometry.pose.pose.position.z", "enabled": true }
+      ],
+      "xAxisVal": "timestamp"
+    },
+    "Plot!vel": {
+      "paths": [
+        { "value": "/vins_estimator/odometry.twist.twist.linear.x", "enabled": true },
+        { "value": "/vins_estimator/odometry.twist.twist.linear.y", "enabled": true },
+        { "value": "/vins_estimator/odometry.twist.twist.linear.z", "enabled": true }
+      ],
+      "xAxisVal": "timestamp"
+    }
+  },
+  "layout": {
+    "direction": "column",
+    "first": {
+      "direction": "row",
+      "first": {
+        "direction": "row",
+        "first": "Plot!roll",
+        "second": "Plot!pitch",
+        "splitPercentage": 50
+      },
+      "second": "3D!vins",
+      "splitPercentage": 62
+    },
+    "second": {
+      "direction": "row",
+      "first": "Plot!gyro",
+      "second": {
+        "direction": "row",
+        "first": "Plot!accel",
+        "second": {
+          "direction": "column",
+          "first": "Plot!yaw",
+          "second": "Plot!pos",
+          "splitPercentage": 50
+        },
+        "splitPercentage": 38
+      },
+      "splitPercentage": 38
+    },
+    "splitPercentage": 55
+  }
+}

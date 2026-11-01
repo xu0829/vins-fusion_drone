@@ -1,0 +1,65 @@
+diff --git a/camera_models/src/calib/CameraCalibration.cc b/camera_models/src/calib/CameraCalibration.cc
+index 10543e9..cfb81f4 100644
+--- a/camera_models/src/calib/CameraCalibration.cc
++++ b/camera_models/src/calib/CameraCalibration.cc
+@@ -1,3 +1,8 @@
++// VINS_OPENCV4_COMPAT: OpenCV 4 兼容头（旧版 C 风格常量）。由 tools/apply_opencv4_compat.sh 插入。
++#include <opencv2/core/types_c.h>    // CV_TERMCRIT_*
++#include <opencv2/imgproc/types_c.h>  // CV_THRESH_*/CV_RETR_*/CV_BGR2GRAY/CV_GRAY2RGB/CV_SHAPE_*/CV_ADAPTIVE_THRESH_*
++#include <opencv2/imgproc/imgproc_c.h>// CV_AA
++#include <opencv2/calib3d/calib3d_c.h>// CV_CALIB_CB_*
+ #include "camodocal/calib/CameraCalibration.h"
+ 
+ #include <cstdio>
+diff --git a/camera_models/src/chessboard/Chessboard.cc b/camera_models/src/chessboard/Chessboard.cc
+index 4c0a761..9d536ba 100644
+--- a/camera_models/src/chessboard/Chessboard.cc
++++ b/camera_models/src/chessboard/Chessboard.cc
+@@ -1,3 +1,8 @@
++// VINS_OPENCV4_COMPAT: OpenCV 4 兼容头（旧版 C 风格常量）。由 tools/apply_opencv4_compat.sh 插入。
++#include <opencv2/core/types_c.h>    // CV_TERMCRIT_*
++#include <opencv2/imgproc/types_c.h>  // CV_THRESH_*/CV_RETR_*/CV_BGR2GRAY/CV_GRAY2RGB/CV_SHAPE_*/CV_ADAPTIVE_THRESH_*
++#include <opencv2/imgproc/imgproc_c.h>// CV_AA
++#include <opencv2/calib3d/calib3d_c.h>// CV_CALIB_CB_*
+ #include "camodocal/chessboard/Chessboard.h"
+ 
+ #include <opencv2/calib3d/calib3d.hpp>
+diff --git a/camera_models/src/intrinsic_calib.cc b/camera_models/src/intrinsic_calib.cc
+index 7590a64..1a272cb 100644
+--- a/camera_models/src/intrinsic_calib.cc
++++ b/camera_models/src/intrinsic_calib.cc
+@@ -1,3 +1,8 @@
++// VINS_OPENCV4_COMPAT: OpenCV 4 兼容头（旧版 C 风格常量）。由 tools/apply_opencv4_compat.sh 插入。
++#include <opencv2/core/types_c.h>    // CV_TERMCRIT_*
++#include <opencv2/imgproc/types_c.h>  // CV_THRESH_*/CV_RETR_*/CV_BGR2GRAY/CV_GRAY2RGB/CV_SHAPE_*/CV_ADAPTIVE_THRESH_*
++#include <opencv2/imgproc/imgproc_c.h>// CV_AA
++#include <opencv2/calib3d/calib3d_c.h>// CV_CALIB_CB_*
+ #include <algorithm>
+ #include <boost/algorithm/string.hpp>
+ #include <boost/filesystem.hpp>
+diff --git a/loop_fusion/src/keyframe.cpp b/loop_fusion/src/keyframe.cpp
+index 862b795..a3cd1d7 100644
+--- a/loop_fusion/src/keyframe.cpp
++++ b/loop_fusion/src/keyframe.cpp
+@@ -1,3 +1,8 @@
++// VINS_OPENCV4_COMPAT: OpenCV 4 兼容头（旧版 C 风格常量）。由 tools/apply_opencv4_compat.sh 插入。
++#include <opencv2/core/types_c.h>    // CV_TERMCRIT_*
++#include <opencv2/imgproc/types_c.h>  // CV_THRESH_*/CV_RETR_*/CV_BGR2GRAY/CV_GRAY2RGB/CV_SHAPE_*/CV_ADAPTIVE_THRESH_*
++#include <opencv2/imgproc/imgproc_c.h>// CV_AA
++#include <opencv2/calib3d/calib3d_c.h>// CV_CALIB_CB_*
+ /*******************************************************
+  * Copyright (C) 2019, Aerial Robotics Group, Hong Kong University of Science and Technology
+  * 
+diff --git a/vins_estimator/src/featureTracker/feature_tracker.cpp b/vins_estimator/src/featureTracker/feature_tracker.cpp
+index eb69c88..6d70da2 100644
+--- a/vins_estimator/src/featureTracker/feature_tracker.cpp
++++ b/vins_estimator/src/featureTracker/feature_tracker.cpp
+@@ -1,3 +1,8 @@
++// VINS_OPENCV4_COMPAT: OpenCV 4 兼容头（旧版 C 风格常量）。由 tools/apply_opencv4_compat.sh 插入。
++#include <opencv2/core/types_c.h>    // CV_TERMCRIT_*
++#include <opencv2/imgproc/types_c.h>  // CV_THRESH_*/CV_RETR_*/CV_BGR2GRAY/CV_GRAY2RGB/CV_SHAPE_*/CV_ADAPTIVE_THRESH_*
++#include <opencv2/imgproc/imgproc_c.h>// CV_AA
++#include <opencv2/calib3d/calib3d_c.h>// CV_CALIB_CB_*
+ /*******************************************************
+  * Copyright (C) 2019, Aerial Robotics Group, Hong Kong University of Science and Technology
+  * 

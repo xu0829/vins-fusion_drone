@@ -1,0 +1,69 @@
+%YAML:1.0
+
+# 由 tools/kalibr2vins.py 生成，请勿手改；改请改脚本后重跑。
+# 来源: camchain-imucam-aprilgrid_imu.yaml + imu-aprilgrid_imu.yaml
+# body_T_cam* = inv(Kalibr T_cam_imu)；td = Kalibr timeshift_cam_imu
+
+#common parameters
+imu: 1
+num_of_cam: 2
+
+imu_topic: "/imu"
+image0_topic: "/camera/infra1/image_rect_raw"
+image1_topic: "/camera/infra2/image_rect_raw"
+output_path: "/root/calib_data/vins_output"
+
+cam0_calib: "cam0.yaml"
+cam1_calib: "cam1.yaml"
+image_width: 640
+image_height: 480
+
+# Extrinsic parameter between IMU and Camera.
+estimate_extrinsic: 0
+# 0 = 信任并固定标定值；1 = 以标定值为初值继续优化
+
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ -0.0047671038670035045, 0.003725186626796057, 0.9999816986851906, 0.07081733745482419, -0.9990090034016356, 0.04423497819971727, -0.004927253407729188, 0.030209074375641198, -0.044252523579956855, -0.9990142089521392, 0.0035106222438879417, 0.018513291410182375, 0.0, 0.0, 0.0, 1.0 ]
+
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ -0.006599679597138796, 0.005457431934968668, 0.9999633296605882, 0.0705914120676894, -0.9990060339211676, 0.044048199827637635, -0.006833760388218159, -0.019982350411117362, -0.04408387934737807, -0.9990145006598351, 0.005161303427054624, 0.01632291187863825, 0.0, 0.0, 0.0, 1.0 ]
+
+#Multiple thread support
+multiple_thread: 1
+
+#feature traker paprameters
+max_cnt: 150
+min_dist: 30
+freq: 10
+F_threshold: 1.0
+show_track: 0
+flow_back: 1
+
+#optimization parameters
+max_solver_time: 0.04
+max_num_iterations: 8
+keyframe_parallax: 10.0
+
+#imu parameters
+# 来源：Kalibr imu-*.yaml。注意：这四个值 Kalibr 未做修改，
+# 实际是 PX4 的典型初值（静止段不足，随机游走项为 NaN），非本机实测。
+acc_n: 1.0          # 保留现有 config_x10 调参
+gyr_n: 0.1          # 保留现有 config_x10 调参
+acc_w: 0.001        # 保留现有 config_x10 调参
+gyr_w: 0.0001       # 保留现有 config_x10 调参
+g_norm: 9.805
+
+#unsynchronization parameters
+estimate_td: 0
+td: 0.007492346363845541   # Kalibr timeshift_cam_imu (cam0)
+
+#loop closure parameters
+load_previous_pose_graph: 0
+pose_graph_save_path: "/root/calib_data/vins_output/pose_graph/"
+save_image: 0
